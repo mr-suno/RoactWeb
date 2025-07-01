@@ -13,7 +13,9 @@ If you'd like to create a UI using Roact, however you don't want to use any "**G
 
 ### Usage 🔗
 ```lua
-local Roact = loadstring(game:HttpGet(""))()
+local Roact = loadstring(game:HttpGet(
+  "https://raw.githubusercontent.com/mr-suno/RoactWeb/refs/heads/main/main.lua"
+))()
 
 -- ... Use Roact as you'd normally would.
 ```
