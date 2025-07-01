@@ -17,3 +17,11 @@ local Roact = loadstring(game:HttpGet(""))()
 
 -- ... Use Roact as you'd normally would.
 ```
+
+---
+
+# Credits
+
+- [chipio - DevForum](https://devforum.roblox.com/t/roact-the-ultimate-ui-framework/796618)  –  Original Roact thread / creator
+- [Roblox - GitHub](https://github.com/Roblox/roact)  –  Discontinued Roact source code
+- [Suno - GitHub](https://github.com/mr-suno)  –  HTTP request conversion for Roact framework
