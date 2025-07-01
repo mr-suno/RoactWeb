@@ -10,6 +10,8 @@ local RobloxRenderer = getgenv().require("RobloxRenderer")
 local strict = getgenv().require("strict")
 local Binding = getgenv().require("Binding")
 
+print(createReconciler, createReconcilerCompat)
+
 local robloxReconciler = createReconciler(RobloxRenderer)
 local reconcilerCompat = createReconcilerCompat(robloxReconciler)
 
