@@ -17,7 +17,7 @@ local search = {
 local query = `{search.domain}{search.owner}{search.repository}{search.branch}{search.folder}/`
 getgenv().require = function(name)
     local _, issue = pcall(function()
-        loadstring(game:HttpGet(`{query}{name}.lua`))
+        loadstring(game:HttpGet(`{query}{name}.lua`))()
     end)
 
     if issue then
