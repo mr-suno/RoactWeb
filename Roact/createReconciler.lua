@@ -398,6 +398,8 @@ local function createReconciler(renderer)
 
 		local kind = ElementKind.of(element)
 
+		print(element, ElementKind, kind)
+
 		local virtualNode = createVirtualNode(element, hostParent, hostKey, context, legacyContext)
 
 		if kind == ElementKind.Host then
