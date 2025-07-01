@@ -352,6 +352,10 @@ local function createReconciler(renderer)
 			return nil
 		end
 
+		print(`ElementKind: {ElementKind} | .of: {ElementKind.of}`)
+		print(`kind: {ElementKind.of(element)} | element: {element}`)
+		print(`Function contents: E:{element}, HP:{hostParent}, HK:{hostKey}, C:{context}, LC:{legacyContext}`)
+
 		local kind = ElementKind.of(element)
 
 		local virtualNode = createVirtualNode(element, hostParent, hostKey, context, legacyContext)
