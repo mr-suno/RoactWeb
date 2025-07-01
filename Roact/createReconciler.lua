@@ -398,7 +398,7 @@ local function createReconciler(renderer)
 
 		local kind = ElementKind.of(element)
 
-		print(element, ElementKind, kind)
+		print(ElementKind.of, ElementKind.of(element))
 
 		local virtualNode = createVirtualNode(element, hostParent, hostKey, context, legacyContext)
 
