@@ -354,7 +354,8 @@ local function createReconciler(renderer)
 
 		print(`ElementKind: {ElementKind} | .of: {ElementKind.of}`)
 		print(`kind: {ElementKind.of(element)} | element: {element}`)
-		print(`Function contents: E:{element}, HP:{hostParent}, HK:{hostKey}, C:{context}, LC:{legacyContext}`)
+		print(`element component: {element.component} | test kind: {ElementKind.of(element.component)}`)
+		-- print(`Function contents: E:{element}, HP:{hostParent}, HK:{hostKey}, C:{context}, LC:{legacyContext}`)
 
 		local kind = ElementKind.of(element)
 
