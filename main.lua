@@ -16,12 +16,17 @@ local search = {
 
 local query = `{search.domain}{search.owner}{search.repository}{search.branch}{search.folder}/`
 getgenv().require = function(name)
+    print(`[/] Loading file: {name}.lua ...`)
+
     local _, issue = pcall(function()
         loadstring(game:HttpGet(`{query}{name}.lua`))
     end)
 
     if issue then
+        warn(`[!] Error on file: {name}.lua`)
         error(issue)
+    else
+        print(`[•] Successfully loaded file: {name}.lua`)
     end
 end
 
