@@ -4,4 +4,6 @@
 
 local Config = getgenv().require("Config")
 
+print(Config)
+
 return Config.new()
