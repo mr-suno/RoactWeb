@@ -1,7 +1,7 @@
 return function()
-	local createSignal = require(script.Parent.createSignal)
+	local createSignal = getgenv().require("createSignal")
 
-	local createSpy = require(script.Parent.createSpy)
+	local createSpy = getgenv().require("createSpy")
 
 	it("should fire subscribers and disconnect them", function()
 		local signal = createSignal()

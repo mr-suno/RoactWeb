@@ -9,8 +9,8 @@
 		}
 ]]
 
-local Symbol = require(script.Parent.Symbol)
-local strict = require(script.Parent.strict)
+local Symbol = getgenv().require("Symbol")
+local strict = getgenv().require("strict")
 
 local Type = newproxy(true)
 

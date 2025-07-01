@@ -1,7 +1,7 @@
 return function()
-	local Type = require(script.Parent.Parent.Type)
+	local Type = getgenv().require("Type")
 
-	local Change = require(script.Parent.Change)
+	local Change = getgenv().require("PropMarkers/Change")
 
 	it("should yield change listener objects when indexed", function()
 		expect(Type.of(Change.Text)).to.equal(Type.HostChangeEvent)

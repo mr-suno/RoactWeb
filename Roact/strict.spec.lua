@@ -1,5 +1,5 @@
 return function()
-	local strict = require(script.Parent.strict)
+	local strict = getgenv().require("strict")
 
 	it("should error when getting a nonexistent key", function()
 		local t = strict({

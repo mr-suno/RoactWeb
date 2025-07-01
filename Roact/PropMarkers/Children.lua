@@ -1,4 +1,4 @@
-local Symbol = require(script.Parent.Parent.Symbol)
+local Symbol = getgenv().require("Symbol")
 
 local Children = Symbol.named("Children")
 

@@ -1,8 +1,8 @@
-local assign = require(script.Parent.assign)
-local None = require(script.Parent.None)
-local Ref = require(script.Parent.PropMarkers.Ref)
+local assign = getgenv().require("assign")
+local None = getgenv().require("None")
+local Ref = getgenv().require("PropMarkers/Ref")
 
-local config = require(script.Parent.GlobalConfig).get()
+local config = getgenv().require("GlobalConfig").get()
 
 local excludeRef = {
 	[Ref] = None,

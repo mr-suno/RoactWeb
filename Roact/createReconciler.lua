@@ -1,12 +1,12 @@
 --!nonstrict
-local Type = require(script.Parent.Type)
-local ElementKind = require(script.Parent.ElementKind)
-local ElementUtils = require(script.Parent.ElementUtils)
-local Children = require(script.Parent.PropMarkers.Children)
-local Symbol = require(script.Parent.Symbol)
-local internalAssert = require(script.Parent.internalAssert)
+local Type = getgenv().require("Type")
+local ElementKind = getgenv().require("ElementKind")
+local ElementUtils = getgenv().require("ElementUtils")
+local Children = getgenv().require("PropMarkers/Children")
+local Symbol = getgenv().require("Symbol")
+local internalAssert = getgenv().require("internalAssert")
 
-local config = require(script.Parent.GlobalConfig).get()
+local config = getgenv().require("GlobalConfig").get()
 
 local InternalData = Symbol.named("InternalData")
 

@@ -1,8 +1,8 @@
 return function()
-	local Binding = require(script.Parent.Binding)
-	local Type = require(script.Parent.Type)
+	local Binding = getgenv().require("Binding")
+	local Type = getgenv().require("Type")
 
-	local createRef = require(script.Parent.createRef)
+	local createRef = getgenv().require("createRef")
 
 	it("should create refs, which are specialized bindings", function()
 		local ref = createRef()

@@ -1,5 +1,5 @@
 return function()
-	local Roact = require(script.Parent)
+	local Roact = loadstring(game:HttpGet("https://raw.githubusercontent.com/mr-suno/RoactWeb/refs/heads/main/Roact.lua"))()
 
 	it("should load with all public APIs", function()
 		local publicApi = {

@@ -1,5 +1,5 @@
 return function()
-	local Symbol = require(script.Parent.Symbol)
+	local Symbol = getgenv().require("Symbol")
 
 	describe("named", function()
 		it("should give an opaque object", function()

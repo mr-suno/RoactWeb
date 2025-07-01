@@ -8,9 +8,9 @@
 		}
 ]]
 
-local Symbol = require(script.Parent.Symbol)
-local strict = require(script.Parent.strict)
-local Portal = require(script.Parent.Portal)
+local Symbol = getgenv().require("Symbol")
+local strict = getgenv().require("strict")
+local Portal = getgenv().require("Portal")
 
 local ElementKind = newproxy(true)
 

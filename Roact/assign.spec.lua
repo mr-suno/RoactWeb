@@ -1,7 +1,7 @@
 return function()
-	local None = require(script.Parent.None)
+	local None = getgenv().require("None")
 
-	local assign = require(script.Parent.assign)
+	local assign = getgenv().require("assign")
 
 	it("should accept zero additional tables", function()
 		local input = {}

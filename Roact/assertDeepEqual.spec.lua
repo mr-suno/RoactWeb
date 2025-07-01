@@ -1,5 +1,5 @@
 return function()
-	local assertDeepEqual = require(script.Parent.assertDeepEqual)
+	local assertDeepEqual = getgenv().require("assertDeepEqual")
 
 	it("should fail with a message when args are not equal", function()
 		local success, message = pcall(assertDeepEqual, 1, 2)

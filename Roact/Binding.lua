@@ -1,8 +1,8 @@
-local createSignal = require(script.Parent.createSignal)
-local Symbol = require(script.Parent.Symbol)
-local Type = require(script.Parent.Type)
+local createSignal = getgenv().require("createSignal")
+local Symbol = getgenv().require("Symbol")
+local Type = getgenv().require("Type")
 
-local config = require(script.Parent.GlobalConfig).get()
+local config = getgenv().require("GlobalConfig").get()
 
 local BindingImpl = Symbol.named("BindingImpl")
 

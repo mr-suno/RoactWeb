@@ -1,7 +1,7 @@
 return function()
-	local Type = require(script.Parent.Parent.Type)
+	local Type = getgenv().require("Type")
 
-	local Event = require(script.Parent.Event)
+	local Event = getgenv().require("PropMarkers/Event")
 
 	it("should yield event objects when indexed", function()
 		expect(Type.of(Event.MouseButton1Click)).to.equal(Type.HostEvent)

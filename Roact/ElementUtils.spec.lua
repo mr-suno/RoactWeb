@@ -1,8 +1,8 @@
 return function()
-	local ElementUtils = require(script.Parent.ElementUtils)
-	local createElement = require(script.Parent.createElement)
-	local createFragment = require(script.Parent.createFragment)
-	local Type = require(script.Parent.Type)
+	local ElementUtils = getgenv().require("ElementUtils")
+	local createElement = getgenv().require("createElement")
+	local createFragment = getgenv().require("createFragment")
+	local Type = getgenv().require("Type")
 
 	describe("iterateElements", function()
 		it("should iterate once for a single child", function()

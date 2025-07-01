@@ -1,5 +1,5 @@
-local ElementKind = require(script.Parent.ElementKind)
-local Type = require(script.Parent.Type)
+local ElementKind = getgenv().require("ElementKind")
+local Type = getgenv().require("Type")
 
 local function createFragment(elements)
 	return {

@@ -1,7 +1,7 @@
 return function()
-	local Type = require(script.Parent.Parent.Type)
+	local Type = getgenv().require("Type")
 
-	local Component = require(script.Parent.Parent.Component)
+	local Component = getgenv().require("Component")
 
 	it("should be extendable", function()
 		local MyComponent = Component:extend("The Senate")

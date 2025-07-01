@@ -1,8 +1,8 @@
 return function()
-	local ElementKind = require(script.Parent.ElementKind)
-	local Type = require(script.Parent.Type)
+	local ElementKind = getgenv().require("ElementKind")
+	local Type = getgenv().require("Type")
 
-	local createFragment = require(script.Parent.createFragment)
+	local createFragment = getgenv().require("createFragment")
 
 	it("should create new primitive elements", function()
 		local fragment = createFragment({})

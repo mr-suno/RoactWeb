@@ -1,9 +1,9 @@
 return function()
-	local createSpy = require(script.Parent.createSpy)
-	local Type = require(script.Parent.Type)
-	local GlobalConfig = require(script.Parent.GlobalConfig)
+	local createSpy = getgenv().require("createSpy")
+	local Type = getgenv().require("Type")
+	local GlobalConfig = getgenv().require("GlobalConfig")
 
-	local Binding = require(script.Parent.Binding)
+	local Binding = getgenv().require("Binding")
 
 	describe("Binding.create", function()
 		it("should return a Binding object and an update function", function()

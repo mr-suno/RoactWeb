@@ -1,18 +1,18 @@
 return function()
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-	local Component = require(script.Parent.Component)
-	local NoopRenderer = require(script.Parent.NoopRenderer)
-	local Children = require(script.Parent.PropMarkers.Children)
-	local createContext = require(script.Parent.createContext)
-	local createElement = require(script.Parent.createElement)
-	local createFragment = require(script.Parent.createFragment)
-	local createReconciler = require(script.Parent.createReconciler)
-	local createSpy = require(script.Parent.createSpy)
+	local Component = getgenv().require("Component")
+	local NoopRenderer = getgenv().require("NoopRenderer")
+	local Children = getgenv().require("PropMarkers/Children")
+	local createContext = getgenv().require("createContext")
+	local createElement = getgenv().require("createElement")
+	local createFragment = getgenv().require("createFragment")
+	local createReconciler = getgenv().require("createReconciler")
+	local createSpy = getgenv().require("createSpy")
 
 	local noopReconciler = createReconciler(NoopRenderer)
 
-	local RobloxRenderer = require(script.Parent.RobloxRenderer)
+	local RobloxRenderer = getgenv().require("RobloxRenderer")
 	local robloxReconciler = createReconciler(RobloxRenderer)
 
 	it("should return a table", function()

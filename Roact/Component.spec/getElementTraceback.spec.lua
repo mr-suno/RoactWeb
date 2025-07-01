@@ -1,10 +1,10 @@
 return function()
-	local createElement = require(script.Parent.Parent.createElement)
-	local createReconciler = require(script.Parent.Parent.createReconciler)
-	local GlobalConfig = require(script.Parent.Parent.GlobalConfig)
-	local NoopRenderer = require(script.Parent.Parent.NoopRenderer)
+	local createElement = getgenv().require("createElement")
+	local createReconciler = getgenv().require("createReconciler")
+	local GlobalConfig = getgenv().require("GlobalConfig")
+	local NoopRenderer = getgenv().require("NoopRenderer")
 
-	local Component = require(script.Parent.Parent.Component)
+	local Component = getgenv().require("Component")
 
 	local noopReconciler = createReconciler(NoopRenderer)
 

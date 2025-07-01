@@ -11,7 +11,7 @@
 		})
 ]]
 
-local Type = require(script.Parent.Parent.Type)
+local Type = getgenv().require("Type")
 
 local Change = {}
 

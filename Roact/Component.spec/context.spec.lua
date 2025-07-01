@@ -1,11 +1,11 @@
 return function()
-	local assertDeepEqual = require(script.Parent.Parent.assertDeepEqual)
-	local createElement = require(script.Parent.Parent.createElement)
-	local createReconciler = require(script.Parent.Parent.createReconciler)
-	local NoopRenderer = require(script.Parent.Parent.NoopRenderer)
-	local oneChild = require(script.Parent.Parent.oneChild)
+	local assertDeepEqual = getgenv().require("assertDeepEqual")
+	local createElement = getgenv().require("createElement")
+	local createReconciler = getgenv().require("createReconciler")
+	local NoopRenderer = getgenv().require("NoopRenderer")
+	local oneChild = getgenv().require("oneChild")
 
-	local Component = require(script.Parent.Parent.Component)
+	local Component = getgenv().require("Component")
 
 	local noopReconciler = createReconciler(NoopRenderer)
 

@@ -1,10 +1,10 @@
 return function()
-	local createElement = require(script.Parent.createElement)
-	local createReconciler = require(script.Parent.createReconciler)
-	local Logging = require(script.Parent.Logging)
-	local NoopRenderer = require(script.Parent.NoopRenderer)
+	local createElement = getgenv().require("createElement")
+	local createReconciler = getgenv().require("createReconciler")
+	local Logging = getgenv().require("Logging")
+	local NoopRenderer = getgenv().require("NoopRenderer")
 
-	local createReconcilerCompat = require(script.Parent.createReconcilerCompat)
+	local createReconcilerCompat = getgenv().require("createReconcilerCompat")
 
 	local noopReconciler = createReconciler(NoopRenderer)
 	local compatReconciler = createReconcilerCompat(noopReconciler)

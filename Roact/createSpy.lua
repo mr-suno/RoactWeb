@@ -6,7 +6,7 @@
 	This should only be used in tests.
 ]]
 
-local assertDeepEqual = require(script.Parent.assertDeepEqual)
+local assertDeepEqual = getgenv().require("assertDeepEqual")
 
 local function createSpy(inner)
 	local self = {}

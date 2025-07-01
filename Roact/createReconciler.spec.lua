@@ -1,13 +1,13 @@
 return function()
-	local assign = require(script.Parent.assign)
-	local createElement = require(script.Parent.createElement)
-	local createFragment = require(script.Parent.createFragment)
-	local createSpy = require(script.Parent.createSpy)
-	local NoopRenderer = require(script.Parent.NoopRenderer)
-	local Type = require(script.Parent.Type)
-	local ElementKind = require(script.Parent.ElementKind)
+	local assign = getgenv().require("assign")
+	local createElement = getgenv().require("createElement")
+	local createFragment = getgenv().require("createFragment")
+	local createSpy = getgenv().require("createSpy")
+	local NoopRenderer = getgenv().require("NoopRenderer")
+	local Type = getgenv().require("Type")
+	local ElementKind = getgenv().require("ElementKind")
 
-	local createReconciler = require(script.Parent.createReconciler)
+	local createReconciler = getgenv().require("createReconciler")
 
 	local noopReconciler = createReconciler(NoopRenderer)
 

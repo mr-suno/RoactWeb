@@ -3,34 +3,34 @@
 	Packages up the internals of Roact and exposes a public API for it.
 ]]
 
-local GlobalConfig = require(script.GlobalConfig)
-local createReconciler = require(script.createReconciler)
-local createReconcilerCompat = require(script.createReconcilerCompat)
-local RobloxRenderer = require(script.RobloxRenderer)
-local strict = require(script.strict)
-local Binding = require(script.Binding)
+local GlobalConfig = getgenv().require("GlobalConfig")
+local createReconciler = getgenv().require("createReconciler")
+local createReconcilerCompat = getgenv().require("createReconcilerCompat")
+local RobloxRenderer = getgenv().require("RobloxRenderer")
+local strict = getgenv().require("strict")
+local Binding = getgenv().require("Binding")
 
 local robloxReconciler = createReconciler(RobloxRenderer)
 local reconcilerCompat = createReconcilerCompat(robloxReconciler)
 
 local Roact = strict({
-	Component = require(script.Component),
-	createElement = require(script.createElement),
-	createFragment = require(script.createFragment),
-	oneChild = require(script.oneChild),
-	PureComponent = require(script.PureComponent),
-	None = require(script.None),
-	Portal = require(script.Portal),
-	createRef = require(script.createRef),
-	forwardRef = require(script.forwardRef),
+	Component = getgenv().require("Component"),
+	createElement = getgenv().require("createElement"),
+	createFragment = getgenv().require("createFragment"),
+	oneChild = getgenv().require("oneChild"),
+	PureComponent = getgenv().require("PureComponent"),
+	None = getgenv().require("None"),
+	Portal = getgenv().require("Portal"),
+	createRef = getgenv().require("createRef"),
+	forwardRef = getgenv().require("forwardRef"),
 	createBinding = Binding.create,
 	joinBindings = Binding.join,
-	createContext = require(script.createContext),
+	createContext = getgenv().require("createContext"),
 
-	Change = require(script.PropMarkers.Change),
-	Children = require(script.PropMarkers.Children),
-	Event = require(script.PropMarkers.Event),
-	Ref = require(script.PropMarkers.Ref),
+	Change = getgenv().require("PropMarkers/Change"),
+	Children = getgenv().require("PropMarkers/Children"),
+	Event = getgenv().require("PropMarkers/Event"),
+	Ref = getgenv().require("PropMarkers/Ref"),
 
 	mount = robloxReconciler.mountVirtualTree,
 	unmount = robloxReconciler.unmountVirtualTree,
@@ -45,5 +45,7 @@ local Roact = strict({
 	-- APIs that may change in the future without warning
 	UNSTABLE = {},
 })
+
+print("RoactWeb locally loaded")
 
 return Roact

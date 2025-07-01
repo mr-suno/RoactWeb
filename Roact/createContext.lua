@@ -1,8 +1,8 @@
-local Symbol = require(script.Parent.Symbol)
-local createFragment = require(script.Parent.createFragment)
-local createSignal = require(script.Parent.createSignal)
-local Children = require(script.Parent.PropMarkers.Children)
-local Component = require(script.Parent.Component)
+local Symbol = getgenv().require("Symbol")
+local createFragment = getgenv().require("createFragment")
+local createSignal = getgenv().require("createSignal")
+local Children = getgenv().require("PropMarkers/Children")
+local Component = getgenv().require("Component")
 
 --[[
 	Construct the value that is assigned to Roact's context storage.

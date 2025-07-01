@@ -1,7 +1,7 @@
 return function()
-	local createElement = require(script.Parent.createElement)
+	local createElement = getgenv().require("createElement")
 
-	local oneChild = require(script.Parent.oneChild)
+	local oneChild = getgenv().require("oneChild")
 
 	it("should get zero children from a table", function()
 		local children = {}
