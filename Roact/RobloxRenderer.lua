@@ -6,7 +6,7 @@
 
 local Binding = getgenv().require("Binding")
 local Children = getgenv().require("PropMarkers.Children")
-local ElementKind = getgenv().require("ElementKind")
+local ElementKind = getgenv().ElementKind
 local SingleEventManager = getgenv().require("SingleEventManager")
 local getDefaultInstanceProperty = getgenv().require("getDefaultInstanceProperty")
 local Ref = getgenv().require("PropMarkers.Ref")

@@ -12,7 +12,7 @@ local Symbol = getgenv().require("Symbol")
 local strict = getgenv().require("strict")
 local Portal = getgenv().require("Portal")
 
-local ElementKind = newproxy(true)
+getgenv().ElementKind = newproxy(true)
 
 local ElementKindInternal = {
 	Portal = Symbol.named("Portal"),
@@ -22,32 +22,12 @@ local ElementKindInternal = {
 	Fragment = Symbol.named("Fragment"),
 }
 
-local function prettyPrintTable(tbl, indent)
-    indent = indent or 0
-    local indentStr = string.rep("  ", indent)  -- Create indentation string
-    local result = "{\n"
-
-    for key, value in pairs(tbl) do
-        result = result .. indentStr .. "  [" .. tostring(key) .. "] = "
-        if type(value) == "table" then
-            result = result .. prettyPrintTable(value, indent + 1)  -- Recursive call for nested tables
-        else
-            result = result .. tostring(value) .. ",\n"
-        end
-    end
-
-    return result .. indentStr .. "},\n"
-end
-
 function ElementKindInternal.of(value)
-    print("ElementKind.of called with:", prettyPrintTable(value))  -- Print the value being checked
-    if typeof(value) ~= "table" then
-        return nil
-    end
+	if typeof(value) ~= "table" then
+		return nil
+	end
 
-    local kind = value[ElementKind]
-    print("Returning kind:", kind)  -- Print the kind being returned
-    return kind
+	return value[getgenv().ElementKind]
 end
 
 local componentTypesToKinds = {
@@ -57,22 +37,15 @@ local componentTypesToKinds = {
 }
 
 function ElementKindInternal.fromComponent(component)
-    if component == Portal then
-        return ElementKind.Portal
-    end
-
-    local kind = componentTypesToKinds[typeof(component)]
-    if kind then
-        return kind
-    else
-        -- Handle unexpected component types
-        print("Warning: Unknown component type for:", component)
-        return nil  -- or return a default kind if appropriate
-    end
+	if component == Portal then
+		return getgenv().ElementKind.Portal
+	else
+		return componentTypesToKinds[typeof(component)]
+	end
 end
 
-getmetatable(ElementKind).__index = ElementKindInternal
+getmetatable(getgenv().ElementKind).__index = ElementKindInternal
 
 strict(ElementKindInternal, "ElementKind")
 
-return ElementKind
+return getgenv().ElementKind

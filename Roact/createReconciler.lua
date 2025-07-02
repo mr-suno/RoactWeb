@@ -1,5 +1,5 @@
 local Type = getgenv().require("Type")
-local ElementKind = getgenv().require("ElementKind")
+local ElementKind = getgenv().ElementKind
 local ElementUtils = getgenv().require("ElementUtils")
 local Children = getgenv().require("PropMarkers.Children")
 local Symbol = getgenv().require("Symbol")
@@ -346,6 +346,7 @@ local function createReconciler(renderer)
 
 		return result .. indentStr .. "},\n"
 	end
+
 	function mountVirtualNode(element, hostParent, hostKey, context, legacyContext)
 		-- Debugging: Log the input parameters
 		print("mountVirtualNode called with:")

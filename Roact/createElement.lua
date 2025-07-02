@@ -1,5 +1,5 @@
 local Children = getgenv().require("PropMarkers.Children")
-local ElementKind = getgenv().require("ElementKind")
+local ElementKind = getgenv().ElementKind
 local Logging = getgenv().require("Logging")
 local Type = getgenv().require("Type")
 
@@ -56,8 +56,8 @@ local function createElement(component, props, children)
 	local elementKind = ElementKind.fromComponent(component)
 
 	local element = {
-		Type = Type.Element,
-		ElementKind = elementKind,
+		[Type] = Type.Element,
+		[ElementKind] = elementKind,
 		component = component,
 		props = props,
 	}
