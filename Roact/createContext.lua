@@ -1,7 +1,7 @@
 local Symbol = getgenv().require("Symbol")
 local createFragment = getgenv().require("createFragment")
 local createSignal = getgenv().require("createSignal")
-local Children = getgenv().require("PropMarkers/Children")
+local Children = getgenv().require("PropMarkers.Children")
 local Component = getgenv().require("Component")
 
 --[[

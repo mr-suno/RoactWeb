@@ -1,4 +1,4 @@
-local Children = getgenv().require("PropMarkers/Children")
+local Children = getgenv().require("PropMarkers.Children")
 local ElementKind = getgenv().require("ElementKind")
 local Logging = getgenv().require("Logging")
 local Type = getgenv().require("Type")
