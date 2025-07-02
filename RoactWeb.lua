@@ -69,4 +69,4 @@ getgenv().require = function(name)
     end
 end
 
-getgenv().require("Roact")
+return getgenv().require("Roact")
