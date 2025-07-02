@@ -1,4 +1,4 @@
-local Type = getgenv().require("Type")
+local Type = getgenv().Type
 local ElementKind = getgenv().ElementKind
 local ElementUtils = getgenv().require("ElementUtils")
 local Children = getgenv().require("PropMarkers.Children")
@@ -330,32 +330,7 @@ local function createReconciler(renderer)
 		Constructs a new virtual node and mounts it, but does not place it into
 		the tree.
 	]]
-	local function prettyPrintTable(tbl, indent)
-    	indent = indent or 0
-		local indentStr = string.rep("  ", indent)  -- Create indentation string
-		local result = "{\n"
-
-		for key, value in pairs(tbl) do
-			result = result .. indentStr .. "  [" .. tostring(key) .. "] = "
-			if type(value) == "table" then
-				result = result .. prettyPrintTable(value, indent + 1)  -- Recursive call for nested tables
-			else
-				result = result .. tostring(value) .. ",\n"
-			end
-		end
-
-		return result .. indentStr .. "},\n"
-	end
-
 	function mountVirtualNode(element, hostParent, hostKey, context, legacyContext)
-		-- Debugging: Log the input parameters
-		print("mountVirtualNode called with:")
-		print("  element:", element)
-		print("  hostParent:", hostParent)
-		print("  hostKey:", hostKey)
-		print("  context:", context)
-		print("  legacyContext:", legacyContext)
-
 		if config.internalTypeChecks then
 			internalAssert(renderer.isHostObject(hostParent) or hostParent == nil, "Expected arg #2 to be a host object")
 			internalAssert(
@@ -372,23 +347,9 @@ local function createReconciler(renderer)
 			)
 		end
 
-		-- Boolean values render as nil to enable terse conditional rendering.
-		if typeof(element) == "boolean" then
-			print("Element is boolean, returning nil.")
-			return nil
-		end
-
-		-- Debugging: Inspect the element structure
-		print("Element structure:", prettyPrintTable(element))
-
 		local kind = ElementKind.of(element)
-		print("Determined kind:", kind)
 
-		-- Create the virtual node
 		local virtualNode = createVirtualNode(element, hostParent, hostKey, context, legacyContext)
-
-		-- Debugging: Log the created virtual node
-		print("Created virtualNode:", prettyPrintTable(virtualNode))
 
 		-- Handle different kinds of elements
 		if kind == ElementKind.Host then

@@ -11,7 +11,7 @@
 		})
 ]]
 
-local Type = getgenv().require("Type")
+local Type = getgenv().Type
 
 local Change = {}
 

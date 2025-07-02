@@ -12,7 +12,7 @@
 local Symbol = getgenv().require("Symbol")
 local strict = getgenv().require("strict")
 
-local Type = newproxy(true)
+getgenv().Type = newproxy(true)
 
 local TypeInternal = {}
 
@@ -34,15 +34,15 @@ function TypeInternal.of(value)
 		return nil
 	end
 
-	return value[Type]
+	return value[getgenv().Type]
 end
 
-getmetatable(Type).__index = TypeInternal
+getmetatable(getgenv().Type).__index = TypeInternal
 
-getmetatable(Type).__tostring = function()
+getmetatable(getgenv().Type).__tostring = function()
 	return "RoactType"
 end
 
 strict(TypeInternal, "Type")
 
-return Type
+return getgenv().Type

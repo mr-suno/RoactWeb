@@ -1,4 +1,4 @@
-local Type = getgenv().require("Type")
+local Type = getgenv().Type
 local Symbol = getgenv().require("Symbol")
 
 local function noop()

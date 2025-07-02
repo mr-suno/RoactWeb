@@ -1,5 +1,5 @@
 local ElementKind = getgenv().ElementKind
-local Type = getgenv().require("Type")
+local Type = getgenv().Type
 
 local function createFragment(elements)
 	return {

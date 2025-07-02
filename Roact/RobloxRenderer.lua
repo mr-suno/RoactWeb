@@ -10,7 +10,7 @@ local ElementKind = getgenv().ElementKind
 local SingleEventManager = getgenv().require("SingleEventManager")
 local getDefaultInstanceProperty = getgenv().require("getDefaultInstanceProperty")
 local Ref = getgenv().require("PropMarkers.Ref")
-local Type = getgenv().require("Type")
+local Type = getgenv().Type
 local internalAssert = getgenv().require("internalAssert")
 
 local config = getgenv().require("GlobalConfig").get()
