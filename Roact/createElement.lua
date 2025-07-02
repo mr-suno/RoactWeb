@@ -56,8 +56,8 @@ local function createElement(component, props, children)
 	local elementKind = ElementKind.fromComponent(component)
 
 	local element = {
-		[Type] = Type.Element,
-		[ElementKind] = elementKind,
+		Type = Type.Element,
+		ElementKind = elementKind,
 		component = component,
 		props = props,
 	}
