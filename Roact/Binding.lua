@@ -1,8 +1,8 @@
-local createSignal = getgenv().require("createSignal")
-local Symbol = getgenv().require("Symbol")
-local Type = getgenv().require("Type")
+local createSignal = getgenv().RoactWeb__require("createSignal")
+local Symbol = getgenv().RoactWeb__Symbol
+local Type = getgenv().RoactWeb__Type
 
-local config = getgenv().require("GlobalConfig").get()
+local config = getgenv().RoactWeb__require("GlobalConfig").get()
 
 local BindingImpl = Symbol.named("BindingImpl")
 

@@ -2,7 +2,7 @@
 	A ref is nothing more than a binding with a special field 'current'
 	that maps to the getValue method of the binding
 ]]
-local Binding = getgenv().require("Binding")
+local Binding = getgenv().RoactWeb__require("Binding")
 
 local function createRef()
 	local binding, _ = Binding.create(nil)

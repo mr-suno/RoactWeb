@@ -3,7 +3,7 @@
 	resulting component to be pure.
 ]]
 
-local Component = getgenv().require("Component")
+local Component = getgenv().RoactWeb__require("Component")
 
 local PureComponent = Component:extend("PureComponent")
 

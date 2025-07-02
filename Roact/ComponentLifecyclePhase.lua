@@ -1,5 +1,5 @@
-local Symbol = getgenv().require("Symbol")
-local strict = getgenv().require("strict")
+local Symbol = getgenv().RoactWeb__Symbol
+local strict = getgenv().RoactWeb__require("strict")
 
 local ComponentLifecyclePhase = strict({
 	-- Component methods

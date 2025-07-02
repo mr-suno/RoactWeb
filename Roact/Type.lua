@@ -9,10 +9,10 @@
 		}
 ]]
 
-local Symbol = getgenv().require("Symbol")
-local strict = getgenv().require("strict")
+local Symbol = getgenv().RoactWeb__Symbol
+local strict = getgenv().RoactWeb__require("strict")
 
-getgenv().Type = newproxy(true)
+getgenv().RoactWeb__Type = newproxy(true)
 
 local TypeInternal = {}
 
@@ -34,15 +34,15 @@ function TypeInternal.of(value)
 		return nil
 	end
 
-	return value[getgenv().Type]
+	return value[getgenv().RoactWeb__Type]
 end
 
-getmetatable(getgenv().Type).__index = TypeInternal
+getmetatable(getgenv().RoactWeb__Type).__index = TypeInternal
 
-getmetatable(getgenv().Type).__tostring = function()
+getmetatable(getgenv().RoactWeb__Type).__tostring = function()
 	return "RoactType"
 end
 
 strict(TypeInternal, "Type")
 
-return getgenv().Type
+return getgenv().RoactWeb__Type

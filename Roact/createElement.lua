@@ -1,9 +1,8 @@
-local Children = getgenv().require("PropMarkers.Children")
-local ElementKind = getgenv().require("ElementKind")
-local Logging = getgenv().require("Logging")
-local Type = getgenv().require("Type")
+local Children = getgenv().RoactWeb__require("PropMarkers.Children")
+local Logging = getgenv().RoactWeb__require("Logging")
+local Type = getgenv().RoactWeb__Type
 
-local config = getgenv().require("GlobalConfig").get()
+local config = getgenv().RoactWeb__require("GlobalConfig").get()
 
 local multipleChildrenMessage = [[
 The prop `Roact.Children` was defined but was overridden by the third parameter to createElement!
@@ -53,11 +52,10 @@ local function createElement(component, props, children)
 		props[Children] = children
 	end
 
-	local elementKind = ElementKind.fromComponent(component)
-
+	local elementKind = getgenv().RoactWeb__ElementKind.fromComponent(component)
 	local element = {
 		[Type] = Type.Element,
-		[ElementKind] = elementKind,
+		[getgenv().RoactWeb__EK] = elementKind,
 		component = component,
 		props = props,
 	}

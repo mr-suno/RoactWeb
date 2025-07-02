@@ -3,7 +3,7 @@
 	this shim is easy -- just delete this file and remove it from init.
 ]]
 
-local Logging = getgenv().require("Logging")
+local Logging = getgenv().RoactWeb__require("Logging")
 
 local reifyMessage = [[
 Roact.reify has been renamed to Roact.mount and will be removed in a future release.

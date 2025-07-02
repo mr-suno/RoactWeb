@@ -1,4 +1,4 @@
-local None = getgenv().require("None")
+local None = getgenv().RoactWeb__require("None")
 
 --[[
 	Merges values from zero or more tables onto a target table. If a value is

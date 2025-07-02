@@ -13,7 +13,7 @@
 		})
 ]]
 
-local Type = getgenv().require("Type")
+local Type = getgenv().RoactWeb__Type
 
 local Event = {}
 

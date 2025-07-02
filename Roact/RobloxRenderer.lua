@@ -4,16 +4,14 @@
 	renderer that does anything.
 ]]
 
-local Binding = getgenv().require("Binding")
-local Children = getgenv().require("PropMarkers.Children")
-local ElementKind = getgenv().ElementKind
-local SingleEventManager = getgenv().require("SingleEventManager")
-local getDefaultInstanceProperty = getgenv().require("getDefaultInstanceProperty")
-local Ref = getgenv().require("PropMarkers.Ref")
-local Type = getgenv().Type
-local internalAssert = getgenv().require("internalAssert")
+local Binding = getgenv().RoactWeb__require("Binding")
+local SingleEventManager = getgenv().RoactWeb__require("SingleEventManager")
+local getDefaultInstanceProperty = getgenv().RoactWeb__require("getDefaultInstanceProperty")
+local Ref = getgenv().RoactWeb__Ref
+local Type = getgenv().RoactWeb__Type
+local internalAssert = getgenv().RoactWeb__require("internalAssert")
 
-local config = getgenv().require("GlobalConfig").get()
+local config = getgenv().RoactWeb__require("GlobalConfig").get()
 
 local applyPropsError = [[
 Error applying props:
@@ -109,7 +107,7 @@ local function applyProp(virtualNode, key, newValue, oldValue)
 		return
 	end
 
-	if key == Ref or key == Children then
+	if key == Ref or (key and typeof(key) == "userdata") == (getgenv().RoactWeb__Children and typeof(getgenv().RoactWeb__Children) == "userdata") then
 		-- Refs and children are handled in a separate pass
 		return
 	end
@@ -182,7 +180,7 @@ function RobloxRenderer.mountHostNode(reconciler, virtualNode)
 	local hostKey = virtualNode.hostKey
 
 	if config.internalTypeChecks then
-		internalAssert(ElementKind.of(element) == ElementKind.Host, "Element at given node is not a host Element")
+		internalAssert(getgenv().RoactWeb__ElementKind.of(element) == getgenv().RoactWeb__ElementKind.Host, "Element at given node is not a host Element")
 	end
 	if config.typeChecks then
 		assert(element.props.Name == nil, "Name can not be specified as a prop to a host component in Roact.")
@@ -209,7 +207,14 @@ function RobloxRenderer.mountHostNode(reconciler, virtualNode)
 
 	instance.Name = tostring(hostKey)
 
-	local children = element.props[Children]
+	local portion
+	for index, _ in element.props do
+		if (index and typeof(index) == "userdata") == (getgenv().RoactWeb__Children and type(getgenv().RoactWeb__Children) == "userdata") then
+			portion = index
+		end
+	end
+
+	local children = element.props[portion]
 
 	if children ~= nil then
 		reconciler.updateVirtualNodeWithChildren(virtualNode, virtualNode.hostObject, children)
@@ -268,8 +273,8 @@ function RobloxRenderer.updateHostNode(reconciler, virtualNode, newElement)
 		error(fullMessage, 0)
 	end
 
-	local children = newElement.props[Children]
-	if children ~= nil or oldProps[Children] ~= nil then
+	local children = newElement.props[getgenv().RoactWeb__Children]
+	if children ~= nil or oldProps[getgenv().RoactWeb__Children] ~= nil then
 		reconciler.updateVirtualNodeWithChildren(virtualNode, virtualNode.hostObject, children)
 	end
 

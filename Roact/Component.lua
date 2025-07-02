@@ -1,11 +1,11 @@
-local assign = getgenv().require("assign")
-local ComponentLifecyclePhase = getgenv().require("ComponentLifecyclePhase")
-local Type = getgenv().require("Type")
-local Symbol = getgenv().require("Symbol")
-local invalidSetStateMessages = getgenv().require("invalidSetStateMessages")
-local internalAssert = getgenv().require("internalAssert")
+local assign = getgenv().RoactWeb__require("assign")
+local ComponentLifecyclePhase = getgenv().RoactWeb__require("ComponentLifecyclePhase")
+local Type = getgenv().RoactWeb__Type
+local Symbol = getgenv().RoactWeb__Symbol
+local invalidSetStateMessages = getgenv().RoactWeb__require("invalidSetStateMessages")
+local internalAssert = getgenv().RoactWeb__require("internalAssert")
 
-local config = getgenv().require("GlobalConfig").get()
+local config = getgenv().RoactWeb__require("GlobalConfig").get()
 
 --[[
 	Calling setState during certain lifecycle allowed methods has the potential

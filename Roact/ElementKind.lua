@@ -8,13 +8,12 @@
 		}
 ]]
 
-local Symbol = getgenv().require("Symbol")
-local strict = getgenv().require("strict")
-local Portal = getgenv().require("Portal")
+local Symbol = getgenv().RoactWeb__Symbol
+local strict = getgenv().RoactWeb__require("strict")
+local Portal = getgenv().RoactWeb__require("Portal")
 
-getgenv().ElementKind = newproxy(true)
-
-local ElementKindInternal = {
+getgenv().RoactWeb__EK = newproxy(true)
+getgenv().RoactWeb__ElementKind = {
 	Portal = Symbol.named("Portal"),
 	Host = Symbol.named("Host"),
 	Function = Symbol.named("Function"),
@@ -22,21 +21,21 @@ local ElementKindInternal = {
 	Fragment = Symbol.named("Fragment"),
 }
 
-function ElementKindInternal.of(value)
+getgenv().RoactWeb__ElementKind.of = function(value)
 	if typeof(value) ~= "table" then
 		return nil
 	end
 
-	return value[getgenv().ElementKind]
+	return value[getgenv().RoactWeb__EK]
 end
 
 local componentTypesToKinds = {
-	["string"] = ElementKindInternal.Host,
-	["function"] = ElementKindInternal.Function,
-	["table"] = ElementKindInternal.Stateful,
+	["string"] = getgenv().RoactWeb__ElementKind.Host,
+	["function"] = getgenv().RoactWeb__ElementKind.Function,
+	["table"] = getgenv().RoactWeb__ElementKind.Stateful,
 }
 
-function ElementKindInternal.fromComponent(component)
+getgenv().RoactWeb__ElementKind.fromComponent = function(component)
 	if component == Portal then
 		return getgenv().ElementKind.Portal
 	else
@@ -44,8 +43,8 @@ function ElementKindInternal.fromComponent(component)
 	end
 end
 
-getmetatable(getgenv().ElementKind).__index = ElementKindInternal
+getmetatable(getgenv().RoactWeb__EK).__index = getgenv().RoactWeb__ElementKind
 
-strict(ElementKindInternal, "ElementKind")
+strict(getgenv().RoactWeb__ElementKind, "ElementKind")
 
-return getgenv().ElementKind
+return getgenv().RoactWeb__EK

@@ -8,7 +8,7 @@
 	of an object without constructing an instance of it.
 ]]
 
-local Symbol = getgenv().require("Symbol")
+local Symbol = getgenv().RoactWeb__Symbol
 
 local Nil = Symbol.named("Nil")
 local _cachedPropertyValues = {}

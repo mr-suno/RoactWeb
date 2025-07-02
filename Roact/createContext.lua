@@ -1,8 +1,8 @@
-local Symbol = getgenv().require("Symbol")
-local createFragment = getgenv().require("createFragment")
-local createSignal = getgenv().require("createSignal")
-local Children = getgenv().require("PropMarkers.Children")
-local Component = getgenv().require("Component")
+local Symbol = getgenv().RoactWeb__Symbol
+local createFragment = getgenv().RoactWeb__require("createFragment")
+local createSignal = getgenv().RoactWeb__require("createSignal")
+local Children = getgenv().RoactWeb__require("PropMarkers.Children")
+local Component = getgenv().RoactWeb__require("Component")
 
 --[[
 	Construct the value that is assigned to Roact's context storage.

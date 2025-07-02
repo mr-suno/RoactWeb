@@ -5,7 +5,7 @@
 	of the symbol is shown.
 ]]
 
-local Symbol = {}
+getgenv().RoactWeb__Symbol = {}
 
 --[[
 	Creates a Symbol with the given name.
@@ -13,7 +13,7 @@ local Symbol = {}
 	When printed or coerced to a string, the symbol will turn into the string
 	given as its name.
 ]]
-function Symbol.named(name)
+getgenv().RoactWeb__Symbol.named = function(name)
 	assert(type(name) == "string", "Symbols must be created using a string name!")
 
 	local self = newproxy(true)
@@ -27,4 +27,4 @@ function Symbol.named(name)
 	return self
 end
 
-return Symbol
+return getgenv().RoactWeb__Symbol

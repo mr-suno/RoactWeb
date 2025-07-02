@@ -1,4 +1,4 @@
-local Symbol = getgenv().require("Symbol")
+local Symbol = getgenv().RoactWeb__Symbol
 
 -- Marker used to specify that the value is nothing, because nil cannot be
 -- stored in tables.

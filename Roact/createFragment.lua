@@ -1,5 +1,5 @@
-local ElementKind = getgenv().require("ElementKind")
-local Type = getgenv().require("Type")
+local ElementKind = getgenv().RoactWeb__ElementKind
+local Type = getgenv().RoactWeb__Type
 
 local function createFragment(elements)
 	return {

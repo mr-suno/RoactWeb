@@ -1,5 +1,5 @@
-local Symbol = getgenv().require("Symbol")
+local Symbol = getgenv().RoactWeb__Symbol
 
-local Ref = Symbol.named("Ref")
+getgenv().RoactWeb__Ref = Symbol.named("Ref")
 
-return Ref
+return getgenv().RoactWeb__Ref

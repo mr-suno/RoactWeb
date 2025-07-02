@@ -1,5 +1,5 @@
-local Type = getgenv().Type
-local Symbol = getgenv().require("Symbol")
+local Type = getgenv().RoactWeb__Type
+local Symbol = getgenv().RoactWeb__Symbol
 
 local function noop()
 	return nil

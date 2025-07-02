@@ -2,7 +2,7 @@
 	A manager for a single host virtual node's connected events.
 ]]
 
-local Logging = getgenv().require("Logging")
+local Logging = getgenv().RoactWeb__require("Logging")
 
 local CHANGE_PREFIX = "Change."
 

@@ -22,6 +22,7 @@ local function loadCached()
     if canProvide() then
         local cachedModules = {}
         for _, found in listfiles("RoactWeb") do
+            print(found)
             table.insert(cachedModules, {
                 file = found:gsub("RoactWeb\\", ""):gsub(".lua", ""),
                 localSource = readfile(found)
@@ -35,7 +36,7 @@ local function loadCached()
 end
 
 local cachedModules = loadCached()
-getgenv().require = function(name)
+getgenv().RoactWeb__require = function(name)
     local cleansedName = name
     if name:find(".") then
         cleansedName = name:gsub("%.", "/")
@@ -69,4 +70,4 @@ getgenv().require = function(name)
     end
 end
 
-return getgenv().require("Roact")
+return getgenv().RoactWeb__require("Roact")

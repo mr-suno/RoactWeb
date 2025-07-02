@@ -5,7 +5,7 @@
 	The indentation may seem odd, but it's necessary to avoid introducing extra
 	whitespace into the error messages themselves.
 ]]
-local ComponentLifecyclePhase = getgenv().require("ComponentLifecyclePhase")
+local ComponentLifecyclePhase = getgenv().RoactWeb__require("ComponentLifecyclePhase")
 
 local invalidSetStateMessages = {}
 

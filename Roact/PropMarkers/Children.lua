@@ -1,5 +1,5 @@
-local Symbol = getgenv().require("Symbol")
+local Symbol = getgenv().RoactWeb__Symbol
 
-local Children = Symbol.named("Children")
+getgenv().RoactWeb__Children = Symbol.named("Children")
 
-return Children
+return getgenv().RoactWeb__Children

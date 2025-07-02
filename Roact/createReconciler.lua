@@ -1,11 +1,10 @@
-local Type = getgenv().Type
-local ElementKind = getgenv().ElementKind
-local ElementUtils = getgenv().require("ElementUtils")
-local Children = getgenv().require("PropMarkers.Children")
-local Symbol = getgenv().require("Symbol")
-local internalAssert = getgenv().require("internalAssert")
+local Type = getgenv().RoactWeb__Type
+local ElementUtils = getgenv().RoactWeb__require("ElementUtils")
+local Children = getgenv().RoactWeb__require("PropMarkers.Children")
+local Symbol = getgenv().RoactWeb__Symbol
+local internalAssert = getgenv().RoactWeb__require("internalAssert")
 
-local config = getgenv().require("GlobalConfig").get()
+local config = getgenv().RoactWeb__require("GlobalConfig").get()
 
 local InternalData = Symbol.named("InternalData")
 
@@ -112,7 +111,14 @@ local function createReconciler(renderer)
 	end
 
 	local function updateVirtualNodeWithRenderResult(virtualNode, hostParent, renderResult)
-		if Type.of(renderResult) == Type.Element
+		local savedValue
+		for index, value in renderResult do
+			if tostring(value) == tostring(Type.Element) then
+				savedValue = value
+			end
+		end
+		
+		if tostring(savedValue) == tostring(Type.Element)
 			or renderResult == nil
 			or typeof(renderResult) == "boolean"
 		then
@@ -133,21 +139,21 @@ local function createReconciler(renderer)
 			internalAssert(Type.of(virtualNode) == Type.VirtualNode, "Expected arg #1 to be of type VirtualNode")
 		end
 
-		local kind = ElementKind.of(virtualNode.currentElement)
+		local kind = getgenv().RoactWeb__ElementKind.of(virtualNode.currentElement)
 
-		if kind == ElementKind.Host then
+		if kind == getgenv().RoactWeb__ElementKind.Host then
 			renderer.unmountHostNode(reconciler, virtualNode)
-		elseif kind == ElementKind.Function then
+		elseif kind == getgenv().RoactWeb__ElementKind.Function then
 			for _, childNode in pairs(virtualNode.children) do
 				unmountVirtualNode(childNode)
 			end
-		elseif kind == ElementKind.Stateful then
+		elseif kind == getgenv().RoactWeb__ElementKind.Stateful then
 			virtualNode.instance:__unmount()
-		elseif kind == ElementKind.Portal then
+		elseif kind == getgenv().RoactWeb__ElementKind.Portal then
 			for _, childNode in pairs(virtualNode.children) do
 				unmountVirtualNode(childNode)
 			end
-		elseif kind == ElementKind.Fragment then
+		elseif kind == getgenv().RoactWeb__ElementKind.Fragment then
 			for _, childNode in pairs(virtualNode.children) do
 				unmountVirtualNode(childNode)
 			end
@@ -226,19 +232,19 @@ local function createReconciler(renderer)
 			return replaceVirtualNode(virtualNode, newElement)
 		end
 
-		local kind = ElementKind.of(newElement)
+		local kind = getgenv().RoactWeb__ElementKind.of(newElement)
 
 		local shouldContinueUpdate = true
 
-		if kind == ElementKind.Host then
+		if kind == getgenv().RoactWeb__ElementKind.Host then
 			virtualNode = renderer.updateHostNode(reconciler, virtualNode, newElement)
-		elseif kind == ElementKind.Function then
+		elseif kind == getgenv().RoactWeb__ElementKind.Function then
 			virtualNode = updateFunctionVirtualNode(virtualNode, newElement)
-		elseif kind == ElementKind.Stateful then
+		elseif kind == getgenv().RoactWeb__ElementKind.Stateful then
 			shouldContinueUpdate = virtualNode.instance:__update(newElement, newState)
-		elseif kind == ElementKind.Portal then
+		elseif kind == getgenv().RoactWeb__ElementKind.Portal then
 			virtualNode = updatePortalVirtualNode(virtualNode, newElement)
-		elseif kind == ElementKind.Fragment then
+		elseif kind == getgenv().RoactWeb__ElementKind.Fragment then
 			virtualNode = updateFragmentVirtualNode(virtualNode, newElement)
 		else
 			error(("Unknown ElementKind %q"):format(tostring(kind), 2))
@@ -352,20 +358,18 @@ local function createReconciler(renderer)
 			return nil
 		end
 
-		local kind = ElementKind.of(element)
-
+		local kind = getgenv().RoactWeb__ElementKind.of(element)
 		local virtualNode = createVirtualNode(element, hostParent, hostKey, context, legacyContext)
 
-		-- Handle different kinds of elements
-		if kind == ElementKind.Host then
+		if kind == getgenv().RoactWeb__ElementKind.Host then
 			renderer.mountHostNode(reconciler, virtualNode)
-		elseif kind == ElementKind.Function then
+		elseif kind == getgenv().RoactWeb__ElementKind.Function then
 			mountFunctionVirtualNode(virtualNode)
-		elseif kind == ElementKind.Stateful then
+		elseif kind == getgenv().RoactWeb__ElementKind.Stateful then
 			element.component:__mount(reconciler, virtualNode)
-		elseif kind == ElementKind.Portal then
+		elseif kind == getgenv().RoactWeb__ElementKind.Portal then
 			mountPortalVirtualNode(virtualNode)
-		elseif kind == ElementKind.Fragment then
+		elseif kind == getgenv().RoactWeb__ElementKind.Fragment then
 			mountFragmentVirtualNode(virtualNode)
 		else
 			error(("Unknown ElementKind %q"):format(tostring(kind), 2))
