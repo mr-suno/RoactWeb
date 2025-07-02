@@ -68,3 +68,5 @@ getgenv().require = function(name)
         return loadstring(foundSource)()
     end
 end
+
+getgenv().require("Roact")
