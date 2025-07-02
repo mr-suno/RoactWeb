@@ -3,6 +3,7 @@
 ]]
 
 getgenv().require("ElementKind")
+getgenv().require("Type")
 
 local GlobalConfig = getgenv().require("GlobalConfig")
 local createReconciler = getgenv().require("createReconciler")
