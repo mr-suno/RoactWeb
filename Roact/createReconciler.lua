@@ -330,6 +330,22 @@ local function createReconciler(renderer)
 		Constructs a new virtual node and mounts it, but does not place it into
 		the tree.
 	]]
+	local function prettyPrintTable(tbl, indent)
+    	indent = indent or 0
+		local indentStr = string.rep("  ", indent)  -- Create indentation string
+		local result = "{\n"
+
+		for key, value in pairs(tbl) do
+			result = result .. indentStr .. "  [" .. tostring(key) .. "] = "
+			if type(value) == "table" then
+				result = result .. prettyPrintTable(value, indent + 1)  -- Recursive call for nested tables
+			else
+				result = result .. tostring(value) .. ",\n"
+			end
+		end
+
+		return result .. indentStr .. "},\n"
+	end
 	function mountVirtualNode(element, hostParent, hostKey, context, legacyContext)
 		-- Debugging: Log the input parameters
 		print("mountVirtualNode called with:")
@@ -361,7 +377,9 @@ local function createReconciler(renderer)
 			return nil
 		end
 
-		-- Debugging: Check the kind of the element
+		-- Debugging: Inspect the element structure
+		print("Element structure:", prettyPrintTable(element))
+
 		local kind = ElementKind.of(element)
 		print("Determined kind:", kind)
 
@@ -369,7 +387,7 @@ local function createReconciler(renderer)
 		local virtualNode = createVirtualNode(element, hostParent, hostKey, context, legacyContext)
 
 		-- Debugging: Log the created virtual node
-		print("Created virtualNode:", virtualNode)
+		print("Created virtualNode:", prettyPrintTable(virtualNode))
 
 		-- Handle different kinds of elements
 		if kind == ElementKind.Host then
