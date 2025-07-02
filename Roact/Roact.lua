@@ -51,6 +51,4 @@ local Roact = strict {
 	},
 }
 
-print("[!] Loaded RoactWeb using version: 3")
-
 return Roact

@@ -17,6 +17,7 @@ local function createRef()
 			if key == "current" then
 				return binding:getValue()
 			else
+				-- goes in here
 				return binding[key]
 			end
 		end,
@@ -25,6 +26,7 @@ local function createRef()
 				error("Cannot assign to the 'current' property of refs", 2)
 			end
 
+			print(3)
 			binding[key] = value
 		end,
 		__tostring = function(_self)

@@ -22,7 +22,6 @@ local function loadCached()
     if canProvide() then
         local cachedModules = {}
         for _, found in listfiles("RoactWeb") do
-            print(found)
             table.insert(cachedModules, {
                 file = found:gsub("RoactWeb\\", ""):gsub(".lua", ""),
                 localSource = readfile(found)

@@ -89,6 +89,10 @@ local function attachBinding(virtualNode, key, newBinding)
 		virtualNode.bindings = {}
 	end
 
+	if virtualNode.bindings[key] == nil then
+		return
+	end
+
 	virtualNode.bindings[key] = Binding.subscribe(newBinding, updateBoundProperty)
 
 	updateBoundProperty(newBinding:getValue())
@@ -127,6 +131,10 @@ local function applyProp(virtualNode, key, newValue, oldValue)
 			virtualNode.eventManager:connectEvent(eventName, newValue)
 		end
 
+		return
+	end
+
+	if type(newValue) ~= "table" then
 		return
 	end
 
