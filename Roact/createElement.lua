@@ -1,12 +1,12 @@
-local Children = getgenv().require("PropMarkers.Children")
-local ElementKind = getgenv().ElementKind
+local Children = getgenv().require("PropMarkers/Children")
+local ElementKind = getgenv().require("ElementKind")
 local Logging = getgenv().require("Logging")
-local Type = getgenv().Type
+local Type = getgenv().require("Type")
 
 local config = getgenv().require("GlobalConfig").get()
 
 local multipleChildrenMessage = [[
-The prop `Roact.Children` was defined but was overriden by the third parameter to createElement!
+The prop `Roact.Children` was defined but was overridden by the third parameter to createElement!
 This can happen when a component passes props through to a child element but also uses the `children` argument:
 
 	Roact.createElement("Frame", passedProps, {

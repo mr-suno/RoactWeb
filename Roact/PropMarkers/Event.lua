@@ -13,7 +13,7 @@
 		})
 ]]
 
-local Type = getgenv().Type
+local Type = getgenv().require("Type")
 
 local Event = {}
 
@@ -24,7 +24,7 @@ local eventMetatable = {
 }
 
 setmetatable(Event, {
-	__index = function(self, eventName)
+	__index = function(_self, eventName)
 		local event = {
 			[Type] = Type.HostEvent,
 			name = eventName,

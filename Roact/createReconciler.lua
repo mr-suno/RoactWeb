@@ -347,6 +347,11 @@ local function createReconciler(renderer)
 			)
 		end
 
+		if typeof(element) == "boolean" then
+			print("Element is boolean, returning nil.")
+			return nil
+		end
+
 		local kind = ElementKind.of(element)
 
 		local virtualNode = createVirtualNode(element, hostParent, hostKey, context, legacyContext)

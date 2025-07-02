@@ -1,3 +1,4 @@
+--!strict
 --[[
 	A utility used to assert that two objects are value-equal recursively. It
 	outputs fairly nicely formatted messages to help diagnose why two objects
@@ -6,12 +7,9 @@
 	This should only be used in tests.
 ]]
 
-local function deepEqual(a, b)
+local function deepEqual(a: any, b: any): (boolean, string?)
 	if typeof(a) ~= typeof(b) then
-		local message = ("{1} is of type %s, but {2} is of type %s"):format(
-			typeof(a),
-			typeof(b)
-		)
+		local message = ("{1} is of type %s, but {2} is of type %s"):format(typeof(a), typeof(b))
 		return false, message
 	end
 
@@ -22,7 +20,7 @@ local function deepEqual(a, b)
 			visitedKeys[key] = true
 
 			local success, innerMessage = deepEqual(value, b[key])
-			if not success then
+			if not success and innerMessage then
 				local message = innerMessage
 					:gsub("{1}", ("{1}[%s]"):format(tostring(key)))
 					:gsub("{2}", ("{2}[%s]"):format(tostring(key)))
@@ -35,7 +33,7 @@ local function deepEqual(a, b)
 			if not visitedKeys[key] then
 				local success, innerMessage = deepEqual(value, a[key])
 
-				if not success then
+				if not success and innerMessage then
 					local message = innerMessage
 						:gsub("{1}", ("{1}[%s]"):format(tostring(key)))
 						:gsub("{2}", ("{2}[%s]"):format(tostring(key)))
@@ -45,11 +43,11 @@ local function deepEqual(a, b)
 			end
 		end
 
-		return true
+		return true, nil
 	end
 
 	if a == b then
-		return true
+		return true, nil
 	end
 
 	local message = "{1} ~= {2}"
@@ -59,10 +57,8 @@ end
 local function assertDeepEqual(a, b)
 	local success, innerMessageTemplate = deepEqual(a, b)
 
-	if not success then
-		local innerMessage = innerMessageTemplate
-			:gsub("{1}", "first")
-			:gsub("{2}", "second")
+	if not success and innerMessageTemplate then
+		local innerMessage = innerMessageTemplate:gsub("{1}", "first"):gsub("{2}", "second")
 
 		local message = ("Values were not deep-equal.\n%s"):format(innerMessage)
 

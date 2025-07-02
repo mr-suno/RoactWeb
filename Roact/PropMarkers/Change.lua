@@ -11,7 +11,7 @@
 		})
 ]]
 
-local Type = getgenv().Type
+local Type = getgenv().require("Type")
 
 local Change = {}
 
@@ -22,7 +22,7 @@ local changeMetatable = {
 }
 
 setmetatable(Change, {
-	__index = function(self, propertyName)
+	__index = function(_self, propertyName)
 		local changeListener = {
 			[Type] = Type.HostChangeEvent,
 			name = propertyName,
