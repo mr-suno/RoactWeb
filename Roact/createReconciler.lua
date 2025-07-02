@@ -331,6 +331,14 @@ local function createReconciler(renderer)
 		the tree.
 	]]
 	function mountVirtualNode(element, hostParent, hostKey, context, legacyContext)
+		-- Debugging: Log the input parameters
+		print("mountVirtualNode called with:")
+		print("  element:", element)
+		print("  hostParent:", hostParent)
+		print("  hostKey:", hostKey)
+		print("  context:", context)
+		print("  legacyContext:", legacyContext)
+
 		if config.internalTypeChecks then
 			internalAssert(renderer.isHostObject(hostParent) or hostParent == nil, "Expected arg #2 to be a host object")
 			internalAssert(
@@ -338,6 +346,7 @@ local function createReconciler(renderer)
 				"Expected arg #5 to be of type table or nil"
 			)
 		end
+
 		if config.typeChecks then
 			assert(hostKey ~= nil, "Expected arg #3 to be non-nil")
 			assert(
@@ -348,13 +357,21 @@ local function createReconciler(renderer)
 
 		-- Boolean values render as nil to enable terse conditional rendering.
 		if typeof(element) == "boolean" then
+			print("Element is boolean, returning nil.")
 			return nil
 		end
 
+		-- Debugging: Check the kind of the element
 		local kind = ElementKind.of(element)
+		print("Determined kind:", kind)
 
+		-- Create the virtual node
 		local virtualNode = createVirtualNode(element, hostParent, hostKey, context, legacyContext)
 
+		-- Debugging: Log the created virtual node
+		print("Created virtualNode:", virtualNode)
+
+		-- Handle different kinds of elements
 		if kind == ElementKind.Host then
 			renderer.mountHostNode(reconciler, virtualNode)
 		elseif kind == ElementKind.Function then
