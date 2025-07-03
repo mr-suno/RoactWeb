@@ -116,8 +116,26 @@ local function applyProp(virtualNode, key, newValue, oldValue)
 		return
 	end
 
+	local instance = virtualNode.currentElement 
+	local element = {
+		object = virtualNode.hostObject,
+		props = instance.props
+	}
 	local internalKeyType = Type.of(key)
 
+	for property, value in element.props do
+		if type(property) ~= "userdata" then
+			local setValue
+			if type(value) == "string" then
+				setValue = tostring(value)
+			else
+				setValue = value
+			end
+
+			element.object[tostring(property)] = setValue
+		end
+	end
+	
 	if internalKeyType == Type.HostEvent or internalKeyType == Type.HostChangeEvent then
 		if virtualNode.eventManager == nil then
 			virtualNode.eventManager = SingleEventManager.new(virtualNode.hostObject)
